@@ -1,0 +1,6 @@
+aiogram == 3.4.1
+apscheduler == 3.10.4
+psycopg == 3.1.18
+psycopg_pool == 3.2.1
+SQLAlchemy
+timezonefinder == 6.5.0

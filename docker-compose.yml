@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+
+  bot:
+    build: ./bot
+    restart: always
+    environment:
+      MAGICIAN_BOT_TOKEN: 🤔
+      MAGICIAN_BOT_DB_USER: admin
+      MAGICIAN_BOT_DB_PASSWORD: Q6CWDf4Bd7pB1XrMor2b
+      MAGICIAN_BOT_DB_NAME: magician
+      MAGICIAN_BOT_DB_HOST: db
+    depends_on:
+      - db
+    volumes:
+      - /var/log/magician/magician.log:/var/log/magician/magician.log
+
+  db:
+    image: postgres:16.2
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: Q6CWDf4Bd7pB1XrMor2b
+      POSTGRES_DB: magician
+      PGDATA: /data/pgdata
+    volumes:
+      - /var/lib/db/data:/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - 5432:5432
